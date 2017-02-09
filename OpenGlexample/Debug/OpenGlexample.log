@@ -1,0 +1,5 @@
+﻿  shader.cpp
+d:\cppproject\openglexample\openglexample\shader.cpp(7): error C2143: 语法错误: 缺少“;”(在“Shader::{ctor}”的前面)
+  main.cpp
+  Display.cpp
+  正在生成代码...
