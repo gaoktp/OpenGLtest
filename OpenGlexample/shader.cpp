@@ -9,13 +9,13 @@ Shader::Shader(const std::string &fileName)
 	m_shaders[0] = CreateShader(LoadShader(fileName + ".vs"),GL_VERTEX_SHADER);
 	m_shaders[1] = CreateShader(LoadShader(fileName + ".fs"), GL_FRAGMENT_SHADER);
 	for (unsigned int i = 0; i < NUM_SHADER; i++) 
-		glAttachShader(m_program, m_shaders[i]);
+		glAttachShader(m_program, m_shaders[i]);//attach Shader
 	glBindAttribLocation(m_program, 0, "position");
 
-	glLinkProgram(m_program);
+	glLinkProgram(m_program);//link
 	CheckShaderError(m_program, GL_LINK_STATUS, true, "Error: program linking failed");
 
-	glValidateProgram(m_program);
+	glValidateProgram(m_program);//valide
 	CheckShaderError(m_program, GL_LINK_STATUS, true, "Error: program validete failed");
 }
 
@@ -44,11 +44,11 @@ Shader::Shader(const std::string &fileName)
 	 }
 	 const GLchar* shaderSourceString[1];
 	 GLint shaderSourceStringLength[1];
-	 shaderSourceString[0] = text.c_str();
+	 shaderSourceString[0] = text.c_str();//读取
 	 shaderSourceStringLength[0] = text.length;
 	 glShaderSource(shader, 1, shaderSourceString, shaderSourceStringLength);
-	 glCompileShader(shader);
-	 CheckShaderError(shader, GL_COMPILE_STATUS, false,"Error: Shader Complie failed");
+	 glCompileShader(shader);//编译
+	 CheckShaderError(shader, GL_COMPILE_STATUS, false,"Error: Shader Complie failed");//
 	 return shader;
  }
  std::string Shader::LoadShader(const std::string& fileName)
@@ -76,7 +76,7 @@ Shader::Shader(const std::string &fileName)
  }
 
  void Shader::CheckShaderError(GLuint shader, GLuint flag, bool isProgram, const std::string& errorMessage)
- {
+ {// Check Shader Error, 封装好的用于监测错误的函数
 	 GLint success = 0;
 	 GLchar error[1024] = { 0 };
 
